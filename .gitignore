@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.ipynb
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Byte-compiled / build
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+
+# Tests / coverage
+.pytest_cache/
+.coverage
+coverage.xml
+
+# IDE/editor
+.vscode/
+.idea/
+*.sublime-*
+*.swp
+
+# Environment files
+.env
+.env.* 
+
+# Caches / tooling
+.mypy_cache/
+.cache/
+.pyre/
+*.log
+
+# OS
+Thumbs.db
+.DS_Store
+schema/validator.py
