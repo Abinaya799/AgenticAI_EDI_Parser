@@ -1,0 +1,27 @@
+{
+    "invoice_id": "INV3003",
+    "side": "buy",
+    "source": { "type": "edi210", "doc_uri": null },
+    "carrier": { "name": null, "scac": null },
+    "customer": { "name": null, "account_id": null },
+    "refs": { "bol": "BOL555777", "pro": "PR998877", "po": null, "load_id": null },
+    "parties": { "ship_from": "OMEGA INDUSTRIES", "ship_to": "WALMART RDC 6030", "bill_to": "OURBROKER AP" },
+    "dates": { "invoice": "2025-11-03", "pickup": "2025-10-29", "delivery": "2025-11-01" },
+    "currency": "USD",
+    "charges": {
+      "base_freight": 2100.0,
+      "fuel_surcharge": 180.0,
+      "detention": 120.0,
+      "other": [ { "code": "LUMPER", "desc": "LUMPER FEE", "amount": 75.0 } ]
+    },
+    "total": 2475.0,
+    "metadata": {
+      "golden_schema_version": "0.1",
+      "parser_version": "1.0.0",
+      "edi_version": "004010",
+      "trading_partner": "CARRIERZ",
+      "confidence": 0.93
+    },
+    "evidence": { "doc_uri": null, "attachments": [] }
+  }
+  
