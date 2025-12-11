@@ -1,3 +1,4 @@
+
 {
     "partner": "CARRIERX",
     "edi_version": "004010",
@@ -7,7 +8,8 @@
       "header": {
         "invoice_id": { "seg": "B3", "idx": 2 },
         "invoice_date": { "seg": "B3", "idx": 3, "fmt": "yyyyMMdd" },
-        "bol": { "seg": "B3", "idx": 5 },
+        "bol": {"firstOf":[{ "seg": "B3", "idx": 5 },
+                          { "seg": "REF", "qual": "BM", "idx": 2 }]},
         "pro": { "seg": "REF", "qual": "CN", "idx": 2 }
       },
       "parties": [
@@ -28,6 +30,7 @@
           { "defaultOther": true }
         ],
         "sac_rules": []
+        
       },
       "total": { "seg": "L3", "idx": 1, "fallbackToSum": true }
     },
