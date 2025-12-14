@@ -24,7 +24,7 @@ def load_profiles(base_path: str = "profiles"):
 
     print(f"Loaded {len(PROFILE_CACHE)} partner profiles.")
 
-    if PROFILE_CACHE.get("GLOBAL", 'Default') is None:
+    if PROFILE_CACHE.get("global", 'default') is None:
         return False
     return True
 
@@ -33,4 +33,11 @@ def get_profile(partner: str, version: str):
     """
     Retrieve a loaded profile from memory.
     """
-    return PROFILE_CACHE.get((partner.upper(), version))
+    profile =  PROFILE_CACHE.get((partner, version), None)
+    if profile is None:
+        profile = PROFILE_CACHE.get((partner, "default"), None)
+        if profile is None:
+            profile = PROFILE_CACHE.get(("global", "default"), None)
+    if profile is None:
+        raise ValueError(f"No profile found for partner '{partner}' with version '{version}'")
+    return profile

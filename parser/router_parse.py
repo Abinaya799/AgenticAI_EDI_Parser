@@ -1,13 +1,24 @@
-from fastapi import APIRouter, Body
-from parser.tokenizer import tokenize_edi
-from parser.mapper import parse_invoice
-from ..schema.validator import validate_against_schema
+from fastapi import APIRouter, Body, HTTPException, status
+from mapper import parse_invoice
+# from ..schema.validator import validate_against_schema
+from fastapi.responses import JSONResponse
 
 router = APIRouter()
 
 @router.post("/parse")
-def parse_edi(edi_data: str = Body(..., media_type="text/plain")):
-    segments = tokenize_edi(edi_data)          
-    parsed = parse_invoice(segments)           
-    validate_against_schema(parsed)            
-    return parsed
+def parse_edi(edi_text: str = Body(..., media_type="text/plain")):
+    """ Parse EDI text and return structured invoice data. """
+    if not isinstance(edi_text, str):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Invalid request: edi_text must be a string"
+        )
+    try:       
+        parsed,warnings = parse_invoice(edi_text)
+        # validate_against_schema(parsed) 
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(exc))     
+         
+    return JSONResponse(parsed)

@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from parser.loader import load_profiles
+from loader import load_profiles
 import os
 
 router = APIRouter()
