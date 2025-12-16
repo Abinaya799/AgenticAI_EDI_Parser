@@ -1,0 +1,39 @@
+
+{
+    "partner": "CARRIERX",
+    "edi_version": "004010",
+    "profile_version": "1.0.0",
+    "envelope": { "detect": { "gs_sender": true, "isa_sender": true } },
+    "segments": {
+      "header": {
+        "invoice_id": { "seg": "B3", "idx": 2 },
+        "invoice_date": { "seg": "B3", "idx": 3, "fmt": "yyyyMMdd" },
+        "bol": {"firstOf":[{ "seg": "B3", "idx": 5 },
+                          { "seg": "REF", "qual": "BM", "idx": 2 }]},
+        "pro": { "seg": "REF", "qual": "CN", "idx": 2 }
+      },
+      "parties": [
+        { "seg": "N1", "qual": "SH", "nameIdx": 2, "mapTo": "parties.ship_from" },
+        { "seg": "N1", "qual": "CN", "nameIdx": 2, "mapTo": "parties.ship_to" },
+        { "seg": "N1", "qual": "BT", "nameIdx": 2, "mapTo": "parties.bill_to" }
+      ],
+      "dates": [
+        { "seg": "G62", "qual": "11", "mapTo": "dates.pickup", "fmt": "yyyyMMdd" },
+        { "seg": "G62", "qual": "70", "mapTo": "dates.delivery", "fmt": "yyyyMMdd" }
+      ],
+      "charges": {
+        "strategy": "L1_only",
+        "l1_rules": [
+          { "contains": ["BASE FREIGHT","LINEHAUL"], "mapTo": "charges.base_freight" },
+          { "contains": ["FSC","FUEL SURCHARGE"], "mapTo": "charges.fuel_surcharge" },
+          { "contains": ["DETENTION"], "mapTo": "charges.detention" },
+          { "defaultOther": true }
+        ],
+        "sac_rules": []
+        
+      },
+      "total": { "seg": "L3", "idx": 1, "fallbackToSum": true }
+    },
+    "currency": { "default": "USD" }
+  }
+  

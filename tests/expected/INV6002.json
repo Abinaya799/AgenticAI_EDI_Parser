@@ -1,0 +1,27 @@
+{
+    "invoice_id": "INV6002",
+    "side": "buy",
+    "source": { "type": "edi210", "doc_uri": null },
+    "carrier": { "name": null, "scac": null },
+    "customer": { "name": null, "account_id": null },
+    "refs": { "bol": "BOL700002", "pro": null, "po": null, "load_id": null },
+    "parties": { "ship_from": "ATLAS PAPER", "ship_to": "AMAZON SAT2", "bill_to": "OURBROKER AP" },
+    "dates": { "invoice": "2025-11-03", "pickup": "2025-10-31", "delivery": "2025-11-02" },
+    "currency": "USD",
+    "charges": {
+      "base_freight": 1800.0,
+      "fuel_surcharge": 144.0,
+      "detention": 0.0,
+      "other": [ { "code": "LUMPER", "desc": "LUMPER", "amount": 60.0 } ]
+    },
+    "total": 2004.0,
+    "metadata": {
+      "golden_schema_version": "0.1",
+      "parser_version": "1.0.0",
+      "edi_version": "004010",
+      "trading_partner": "CARRIERBATCH",
+      "confidence": 0.94
+    },
+    "evidence": { "doc_uri": null, "attachments": [] }
+  }
+  

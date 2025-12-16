@@ -1,0 +1,27 @@
+{
+    "invoice_id": "INV2002",
+    "side": "buy",
+    "source": { "type": "edi210", "doc_uri": null },
+    "carrier": { "name": null, "scac": null },
+    "customer": { "name": null, "account_id": null },
+    "refs": { "bol": "BOL990021", "pro": null, "po": null, "load_id": null },
+    "parties": { "ship_from": "ACME FOODS", "ship_to": "TARGET DC ATLANTA", "bill_to": "OURBROKER AP" },
+    "dates": { "invoice": "2025-11-02", "pickup": "2025-10-31", "delivery": "2025-11-01" },
+    "currency": "USD",
+    "charges": {
+      "base_freight": 2201.35,
+      "fuel_surcharge": 192.45,
+      "detention": 150.0,
+      "other": []
+    },
+    "total": 2543.8,
+    "metadata": {
+      "golden_schema_version": "0.1",
+      "parser_version": "1.0.0",
+      "edi_version": "004010",
+      "trading_partner": "CARRIERY",
+      "confidence": 0.95
+    },
+    "evidence": { "doc_uri": null, "attachments": [] }
+  }
+  

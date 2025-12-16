@@ -1,0 +1,16 @@
+{
+    "sac_code_dictionary": {
+      "FSC": "charges.fuel_surcharge",
+      "DTN": "charges.detention",
+      "DET": "charges.detention",
+      "LUM": "charges.other:LUMPER"
+    },
+    "l1_keyword_dictionary": {
+      "FUEL SURCHARGE": "charges.fuel_surcharge",
+      "FSC": "charges.fuel_surcharge",
+      "DETENTION": "charges.detention",
+      "LINEHAUL": "charges.base_freight",
+      "BASE FREIGHT": "charges.base_freight"
+    }
+  }
+  

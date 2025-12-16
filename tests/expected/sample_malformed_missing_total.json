@@ -1,0 +1,27 @@
+{
+    "invoice_id": "INV4004",
+    "side": "buy",
+    "source": { "type": "edi210", "doc_uri": null },
+    "carrier": { "name": null, "scac": null },
+    "customer": { "name": null, "account_id": null },
+    "refs": { "bol": "BOL123123", "pro": null, "po": null, "load_id": null },
+    "parties": { "ship_from": "DELTA CHEMICALS", "ship_to": "COSTCO DC AUSTIN", "bill_to": "OURBROKER AP" },
+    "dates": { "invoice": "2025-11-03", "pickup": "2025-10-30", "delivery": "2025-11-01" },
+    "currency": "USD",
+    "charges": {
+      "base_freight": 1000.0,
+      "fuel_surcharge": 120.0,
+      "detention": 0.0,
+      "other": []
+    },
+    "total": 1120.0,
+    "metadata": {
+      "golden_schema_version": "0.1",
+      "parser_version": "1.0.0",
+      "edi_version": "004010",
+      "trading_partner": "CARRIERQ",
+      "confidence": 0.9
+    },
+    "evidence": { "doc_uri": null, "attachments": [] }
+  }
+  

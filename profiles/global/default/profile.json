@@ -1,0 +1,34 @@
+{
+    "partner": "global",
+    "edi_version": "default",
+    "profile_version": "1.0.0",
+    "segments": {
+      "header": {
+        "invoice_id": { "seg": "B3", "idx": 2 },
+        "invoice_date": { "seg": "B3", "idx": 3, "fmt": "yyyyMMdd" },
+        "bol": { "firstOf": [
+          { "seg": "B3", "idx": 7 },
+          { "seg": "REF", "qual": "BM", "idx": 2 }
+        ]}
+      },
+      "parties": [],
+      "dates": [],
+      "charges": {
+        "strategy": "L1_then_SAC",
+        "l1_rules": [
+          { "contains": ["BASE","LINEHAUL","LINE HAUL"], "mapTo": "charges.base_freight" },
+          { "contains": ["FSC","FUEL"], "mapTo": "charges.fuel_surcharge" },
+          { "contains": ["DETENTION","WAIT"], "mapTo": "charges.detention" },
+          { "defaultOther": true }
+        ],
+        "sac_rules": [
+          { "codeIn": ["FSC"], "mapTo": "charges.fuel_surcharge" },
+          { "codeIn": ["DET","DTN"], "mapTo": "charges.detention" },
+          { "defaultOther": true }
+        ]
+      },
+      "total": { "seg": "L3", "idx": 1, "fallbackToSum": true }
+    },
+    "currency": { "default": "USD" }
+  }
+  
