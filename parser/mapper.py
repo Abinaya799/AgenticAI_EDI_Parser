@@ -12,11 +12,12 @@ def parse_invoice(edi_text: str):
     try:
         edi_text = edi_text.replace('\n', '')
         segments = {}
-        multi_batch = edi_text.split('ST')
+        multi_batch = edi_text.split('ST*')
     except Exception as exc:
         raise RuntimeError(f"Failed to tokenize EDI: {exc}") from exc
     for batch in multi_batch[1:]:
-        batch_edi = multi_batch[0] + 'ST' + batch
+        print(f"batch:{batch}")
+        batch_edi = multi_batch[0] + 'ST*' + batch
         segments_data = batch_edi.strip().split(segment_delim)
         for seg in segments_data:
             elements = seg.split(element_delim)

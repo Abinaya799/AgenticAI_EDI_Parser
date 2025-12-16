@@ -1,6 +1,8 @@
 from fastapi import APIRouter
 from loader import load_profiles
 import os
+from dotenv import load_dotenv
+
 
 router = APIRouter()
 
@@ -13,6 +15,7 @@ def readyz():
     """
     Readiness probe: ensures profiles are loaded.
     """
+    load_dotenv()
     profiles_dir = os.environ.get("PROFILES_PATH", "profiles")
     
     if load_profiles(profiles_dir):
