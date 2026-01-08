@@ -6,7 +6,7 @@
       "header": {
         "invoice_id": { "seg": "B3", "idx": 2 },
         "invoice_date": { "seg": "B3", "idx": 3, "fmt": "yyyyMMdd" },
-        "bol": { "seg": "B3", "idx": 7 },
+        "bol": { "seg": "B3", "idx": 5 },
         "pro": { "seg": "REF", "qual": "CN", "idx": 2 }
       },
       "parties": [

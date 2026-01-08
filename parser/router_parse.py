@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Body, HTTPException, status
 from mapper import parse_invoice
-# from ..schema.validator import validate_against_schema
+from validator import validate_invoice
 from fastapi.responses import JSONResponse
 
 router = APIRouter()
@@ -15,10 +15,10 @@ def parse_edi(edi_text: str = Body(..., media_type="text/plain")):
         )
     try:       
         parsed,warnings = parse_invoice(edi_text)
-        # validate_against_schema(parsed) 
+        results = validate_invoice(parsed) 
     except HTTPException:
         raise
     except Exception as exc:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(exc))     
          
-    return JSONResponse(parsed)
+    return JSONResponse(content={"results": results,"warnings": warnings })

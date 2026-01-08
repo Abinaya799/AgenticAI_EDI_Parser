@@ -7,12 +7,19 @@
         "invoice_id": { "seg": "B3", "idx": 2 },
         "invoice_date": { "seg": "B3", "idx": 3, "fmt": "yyyyMMdd" },
         "bol": { "firstOf": [
-          { "seg": "B3", "idx": 7 },
+          { "seg": "B3", "idx": 5 },
           { "seg": "REF", "qual": "BM", "idx": 2 }
         ]}
       },
-      "parties": [],
-      "dates": [],
+      "parties": [
+        { "seg": "N1", "qual": "SH", "nameIdx": 2, "mapTo": "parties.ship_from" },
+        { "seg": "N1", "qual": "CN", "nameIdx": 2, "mapTo": "parties.ship_to" },
+        { "seg": "N1", "qual": "BT", "nameIdx": 2, "mapTo": "parties.bill_to" }
+      ],
+      "dates": [
+        { "seg": "DTM", "qual": "011", "mapTo": "dates.pickup", "fmt": "yyyyMMdd" },
+        { "seg": "DTM", "qual": "035", "mapTo": "dates.delivery", "fmt": "yyyyMMdd" }
+      ],
       "charges": {
         "strategy": "L1_then_SAC",
         "l1_rules": [

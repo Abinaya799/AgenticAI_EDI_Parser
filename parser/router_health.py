@@ -1,7 +1,5 @@
-from fastapi import APIRouter
-from loader import load_profiles
-import os
-from dotenv import load_dotenv
+from fastapi import APIRouter, Request
+from fastapi.responses import Response
 
 
 router = APIRouter()
@@ -11,13 +9,10 @@ def healthz():
     return {"status": "ok"}
 
 @router.get("/readyz")
-def readyz():
+def readyz(request: Request):
     """
     Readiness probe: ensures profiles are loaded.
     """
-    load_dotenv()
-    profiles_dir = os.environ.get("PROFILES_PATH", "profiles")
-    
-    if load_profiles(profiles_dir):
-        return {"status": "ready"}
-    return {"status": "not_ready"}, 503
+    if not getattr(request.app.state, "is_ready", False):
+        return Response(status_code=503)
+    return {"status": "ready"}

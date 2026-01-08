@@ -20,6 +20,13 @@ if uploaded:
         )
 
         if response.status_code == 200:
-            st.json(response.json())
+            data = response.json()
+            results = data["results"]
+            warnings = data["warnings"]
+            st.json(results)
+            with st.sidebar:
+                st.header("Warnings")
+                for item in warnings:
+                    st.write(item)
         else:
             st.error(f"Error: {response.text}")

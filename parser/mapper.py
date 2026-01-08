@@ -9,6 +9,7 @@ def parse_invoice(edi_text: str):
     segment_delim = '~'
     golden_invoice = []
     warnings = []
+    warnings_per_edi = []
     try:
         edi_text = edi_text.replace('\n', '')
         segments = {}
@@ -33,7 +34,9 @@ def parse_invoice(edi_text: str):
         except Exception:
             raise ValueError("Failed to extract partner and EDI version from segments")
         profile = get_profile(partner, edi_version)
-        golden_invoice_segment, warnings = extract_elements_with_rules(profile, segments, partner, edi_version)
+        golden_invoice_segment, warnings_per_edi = extract_elements_with_rules(profile, segments, partner, edi_version)
         golden_invoice.append(golden_invoice_segment)
-        warnings.append(warnings)
+        warnings.append(warnings_per_edi)
+        print(f"hi my warnings:{warnings}")
+        print(f"my invoices type:{type(golden_invoice)}\nmy invoice: {golden_invoice}")
     return golden_invoice, warnings

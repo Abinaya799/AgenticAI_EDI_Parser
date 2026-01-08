@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from fastapi.responses import Response
 
 PROFILE_CACHE = {}
 
@@ -23,9 +24,10 @@ def load_profiles(base_path: str = "profiles"):
                         PROFILE_CACHE[key] = json.loads(profile_file.read_text())
 
     print(f"Loaded {len(PROFILE_CACHE)} partner profiles.")
+    print(PROFILE_CACHE.keys())
 
-    if PROFILE_CACHE.get("global", 'default') is None:
-        return False
+    if not PROFILE_CACHE.get(("GLOBAL", 'default')):
+        raise RuntimeError("Missing required fallback profile ('GLOBAL', 'default)")
     return True
 
 
@@ -37,7 +39,7 @@ def get_profile(partner: str, version: str):
     if profile is None:
         profile = PROFILE_CACHE.get((partner, "default"), None)
         if profile is None:
-            profile = PROFILE_CACHE.get(("global", "default"), None)
+            profile = PROFILE_CACHE.get(("GLOBAL", "default"), None)
     if profile is None:
         raise ValueError(f"No profile found for partner '{partner}' with version '{version}'")
     return profile

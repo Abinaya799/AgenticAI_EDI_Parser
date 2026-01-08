@@ -7,7 +7,7 @@
         "invoice_id": { "seg": "B3", "idx": 2 },
         "invoice_date": { "seg": "B3", "idx": 3, "fmt": "yyyyMMdd" },
         "bol": { "firstOf": [
-          { "seg": "B3", "idx": 7 },
+          { "seg": "B3", "idx": 5 },
           { "seg": "REF", "qual": "BM", "idx": 2 }
         ]}
       },
@@ -20,8 +20,8 @@
         { "seg": "DTM", "qual": "035", "mapTo": "dates.delivery", "fmt": "yyyyMMdd" }
       ],
       "charges": {
-        "strategy": "SAC_only",
-        "l1_rules": [],
+        "strategy": "L1_then_SAC",
+        "l1_rules": [{ "contains": ["BASE FREIGHT","LINEHAUL"], "mapTo": "charges.base_freight" }],
         "sac_rules": [
           { "codeIn": ["FSC"], "mapTo": "charges.fuel_surcharge" },
           { "codeIn": ["DET","DTN"], "mapTo": "charges.detention" },
